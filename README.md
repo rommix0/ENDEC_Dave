@@ -1,6 +1,6 @@
 # Loquendo Dave - "DIGITAL ENDEC" version running on Windows via SAPI
 
-![Demo Install Video and Voice Test](install.mp4)
+https://github.com/user-attachments/assets/ef4fe944-d3e4-41a3-8cbc-26ad7aa55435
 
 ## What is this?
 
