@@ -1,0 +1,18 @@
+# Build artifacts and synthesis tests
+*.obj
+*.exp
+*.pdb
+*.ilk
+*.log
+*.wav
+
+# Speex codec tree
+speexb1/
+
+# Package
+*.zip
+
+# Other files not needed in the repository
+~_*.*
+~_*/**
+~_*/*

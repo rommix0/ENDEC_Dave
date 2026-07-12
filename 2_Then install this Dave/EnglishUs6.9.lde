@@ -1,0 +1,11 @@
+; Language descriptor file for Loquendo TTS
+
+"Description"		=	"American English generic descriptor file"
+"Library"		=	"LoqEnglish6.9"
+"Language"		=	"English"
+"SubLanguage"		=	"en,en-US,US,American,EnglishUs"
+"WinLangid"		=	"1033"
+"Lexicon[0]"		=	"EnglishUs/EnglishUs6.9.lex"
+"PhoneticDictionary"	=	"EnglishUs/EnglishUs6.9.phd"
+"PhoneticAutoma"	=	"EnglishUs/EnglishUs6.9.atm"
+
