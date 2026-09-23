@@ -1,0 +1,9 @@
+[package]
+name = "loqng-codec"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Native replacement for the loqmsx speech-database codec"
+
+[dependencies]

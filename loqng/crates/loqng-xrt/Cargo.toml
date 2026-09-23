@@ -1,0 +1,19 @@
+[package]
+name = "loqng-xrt"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Runtime for ARM code translated to Rust: registers, flags, memory, FPA11"
+
+# Deliberately empty, and empty forever. This is what the generated engine
+# runs on, so anything added here is compiled into every translated function.
+[dependencies]
+
+[features]
+# Count and order block entries, so two translations of the same function can
+# be compared. See `HANDOFF.md` §4.
+cover = []
+# A block-entry profile that does not distort what it measures. Implies the
+# same emission point as `cover`, so it is enabled through it.
+prof = []

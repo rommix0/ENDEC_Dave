@@ -1,0 +1,12 @@
+[package]
+name = "loqng-oracle"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "The original ARM engine, as a reference to diff loqng against"
+
+# The only crate in the workspace allowed to depend on loqrs.
+[dependencies]
+loqhost = { workspace = true }
+loqng = { workspace = true }

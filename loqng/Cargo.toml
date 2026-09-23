@@ -1,0 +1,70 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/loqng",
+    "crates/loqng-xrt",
+    "crates/loqng-eng",
+    "crates/loqng-gen",
+    "crates/loqng-voice",
+    "crates/loqspeak",
+    "crates/loqng-data",
+    "crates/loqng-codec",
+    "crates/loqng-oracle",
+    "xtask",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+license = "GPL-3.0-or-later"
+
+# `loqrs` is the ARM oracle. Only `loqng-oracle` and `xtask` may depend on it,
+# and only as a dev/tool dependency: `cargo build -p loqng` must never pull in
+# the interpreter. See PLAN.md §7.
+[workspace.dependencies]
+armemu = { path = "loqrs/crates/armemu" }
+loqhost = { path = "loqrs/crates/loqhost" }
+loqng = { path = "crates/loqng" }
+loqng-xrt = { path = "crates/loqng-xrt" }
+loqng-eng = { path = "crates/loqng-eng" }
+loqng-gen = { path = "crates/loqng-gen" }
+loqng-voice = { path = "crates/loqng-voice" }
+loqng-data = { path = "crates/loqng-data" }
+loqng-codec = { path = "crates/loqng-codec" }
+loqng-oracle = { path = "crates/loqng-oracle" }
+
+[profile.release]
+opt-level = 3
+# `lto = "fat"` with `codegen-units = 1` was set when this workspace was a few
+# thousand lines. `crates/loqng/src/eng` is now 16 MB of generated Rust, and
+# that pair means one LLVM module and one thread for all of it — a 2.5 minute
+# build. Thin LTO across many units is a fraction of the time and loses
+# nothing measurable here; `xtask refpcm` and `concat` still gate the result.
+# Whole-program LTO over 16 MB of generated Rust costs minutes and buys
+# nothing measurable; the gates (`xtask refpcm`, `concat`, `engprobe`) say so.
+lto = false
+codegen-units = 256
+panic = "abort"
+# Line tables only, and no stripping: a fault inside 166,600 translated
+# instructions is unreadable without them, and they cost nothing at run time.
+# The shipped binary can strip separately.
+debug = "line-tables-only"
+strip = false
+
+# The translated engine is 166,600 instructions of loads, stores and
+# branches, with very little for the optimiser to find and a great deal for
+# it to chew on. It is compiled once and then cached, so this only costs on a
+# retranslation.
+[profile.release.package.loqng-eng]
+opt-level = 3
+
+# `fon::rules` alone is two megabytes of table.
+[profile.release.package.loqng-gen]
+opt-level = 1
+
+# The oracle runs an ARM interpreter over hundreds of millions of instructions
+# per capture. An unoptimised one is unusable, so optimise dependencies even in
+# a debug build of loqng itself.
+[profile.dev.package."*"]
+opt-level = 3

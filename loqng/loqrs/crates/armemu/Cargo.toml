@@ -1,0 +1,12 @@
+[package]
+name = "armemu"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "ARMv5TE + FPA11 interpreter and ELF32 loader for running Loquendo's ARM engine in-process"
+
+[dependencies]
+# Executable memory for the JIT backend; std has no mmap.
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"

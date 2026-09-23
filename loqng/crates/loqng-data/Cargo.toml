@@ -1,0 +1,9 @@
+[package]
+name = "loqng-data"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Parsers for the Loquendo TTS 6 voice and language data files"
+
+[dependencies]

@@ -1,0 +1,19 @@
+[package]
+name = "loqng-gen"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Generated tables and translations: the phoneme rule table, and two cross-check translations"
+
+# GENERATED, and separate from `loqng` for build time alone. Three megabytes
+# of tables and translated ARM that change only when a generator is re-run,
+# sitting next to a runtime that changes constantly, meant every one-line
+# edit cost a full recompile of both.
+[dependencies]
+loqng-xrt = { workspace = true }
+
+[features]
+# Block coverage for `fon::exact` and for `sig::sequens` respectively.
+fon-cover = []
+cover = ["loqng-xrt/cover"]

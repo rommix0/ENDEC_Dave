@@ -1,0 +1,15 @@
+[package]
+name = "loqdave"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Loquendo TTS 6, natively: text in, WAV out, one file"
+
+[[bin]]
+name = "loqdave"
+path = "src/main.rs"
+
+[dependencies]
+loqng = { workspace = true }
+loqng-voice = { workspace = true }

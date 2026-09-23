@@ -1,0 +1,24 @@
+[package]
+name = "loqng"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "A native Rust reimplementation of the Loquendo TTS 6 engine"
+
+# Nothing here, and nothing here ever. `loqng` must not link the ARM
+# interpreter; the oracle lives in `loqng-oracle`. See PLAN.md §7.
+[dependencies]
+loqng-data = { workspace = true }
+loqng-xrt = { workspace = true }
+loqng-eng = { workspace = true }
+loqng-gen = { workspace = true }
+
+[features]
+# Count block entries in the translated mapper; `xtask fonprobe --xlate`
+# reports which were never reached.
+fon-cover = ["loqng-gen/fon-cover"]
+# The same for everything `tools/armxlate.py` and `engxlate.py` generate.
+xrt-cover = ["loqng-xrt/cover", "loqng-eng/cover", "loqng-gen/cover"]
+# Where the time goes, without the mutex that `xrt-cover` takes per block.
+xrt-prof = ["loqng-xrt/prof", "loqng-eng/prof"]

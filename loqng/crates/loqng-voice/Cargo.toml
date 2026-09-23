@@ -1,0 +1,11 @@
+[package]
+name = "loqng-voice"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "The voice tree, compiled into the binary, so a deployment is one file"
+build = "build.rs"
+
+# Nothing, like everything else in this workspace.
+[dependencies]

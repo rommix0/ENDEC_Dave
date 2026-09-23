@@ -11,6 +11,7 @@ speexb1/
 
 # Package
 *.zip
+dist/
 
 # Other files not needed in the repository
 ~_*.*

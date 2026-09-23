@@ -1,0 +1,18 @@
+[package]
+name = "xtask"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Reverse-engineering and differential-testing tools for loqng"
+
+[dependencies]
+loqng = { workspace = true }
+loqng-data = { workspace = true }
+loqng-oracle = { workspace = true }
+loqng-codec = { workspace = true }
+
+[features]
+fon-cover = ["loqng/fon-cover"]
+xrt-cover = ["loqng/xrt-cover"]
+xrt-prof = ["loqng/xrt-prof"]

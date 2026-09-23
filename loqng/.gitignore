@@ -1,0 +1,11 @@
+target/
+corpus/
+tools/
+notes/
+build/
+*.wav
+*.raw
+*.pcm
+__pycache__/
+build_targets.ps1
+pgo.bat

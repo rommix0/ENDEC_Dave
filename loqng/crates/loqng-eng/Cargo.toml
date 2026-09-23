@@ -1,0 +1,18 @@
+[package]
+name = "loqng-eng"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "The Loquendo TTS 6 engine, translated instruction for instruction into Rust"
+
+# GENERATED. Everything in `src` comes from `tools/engxlate.py`; do not edit
+# it by hand. It lives in its own crate for one reason: it is 16 MB of Rust
+# and takes minutes to compile, so it must not be rebuilt when the runtime
+# beside it changes.
+[dependencies]
+loqng-xrt = { workspace = true }
+
+[features]
+cover = ["loqng-xrt/cover"]
+prof = ["cover", "loqng-xrt/prof"]
